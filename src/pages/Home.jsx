@@ -110,9 +110,10 @@ export default function Home() {
         }
         
         const { data } = await api.get(url);
-        setGames(data.data);
+        setGames(data?.data || []);
       } catch (error) {
         console.error("Error fetching games", error);
+        setGames([]);
       } finally {
         setLoading(false);
       }
