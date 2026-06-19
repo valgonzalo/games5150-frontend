@@ -81,13 +81,14 @@ export default function Home() {
           api.get('/genres'),
           user ? api.get('/wishlist') : Promise.resolve({ data: { data: [] } })
         ]);
-        setGenres(genresRes.data.data);
+        setGenres(genresRes?.data?.data || []);
         if (user) {
-          const wlSet = new Set(wishlistRes.data.data.map(w => w.game_id));
+          const wlSet = new Set((wishlistRes?.data?.data || []).map(w => w.game_id));
           setWishlist(wlSet);
         }
       } catch (error) {
         console.error("Error fetching initial data", error);
+        setGenres([]); // Fallback en caso de error
       }
     };
     fetchInitialData();
