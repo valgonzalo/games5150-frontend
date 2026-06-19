@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-[#0a0a0a] border border-[#27272a] rounded-xl shadow-2xl;
+  }
+  .input-field {
+    @apply w-full px-4 py-2 bg-black border border-[#27272a] rounded-lg focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all text-[#ededed] placeholder-[#a1a1aa];
+  }
+  .btn-primary {
+    @apply px-4 py-2 bg-white hover:bg-gray-200 text-black font-medium rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-danger {
+    @apply px-4 py-2 bg-[#e5484d] hover:bg-red-600 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
