@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Search, Filter, ChevronRight, ChevronLeft, Play } from 'lucide-react';
 
-// Carousel Component
 const GameCarousel = ({ title, games, wishlist, onWishlistToggle, onSeeAll }) => {
   const scrollRef = useRef(null);
 
@@ -67,7 +66,6 @@ export default function Home() {
   const [wishlist, setWishlist] = useState(new Set());
   const [loading, setLoading] = useState(true);
   
-  // Filters
   const [search, setSearch] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState('');
@@ -144,18 +142,15 @@ export default function Home() {
 
   const isFiltering = search || selectedGenre || selectedPlatform || sort !== 'newest';
 
-  // Derived groups for carousels
   const ps5Games = games.filter(g => g.platform === 'PS5');
   const xboxGames = games.filter(g => g.platform === 'Xbox');
   const ps4Games = games.filter(g => g.platform === 'PS4');
   const ps2Games = games.filter(g => g.platform === 'PS2');
   const pcGames = games.filter(g => g.platform === 'PC');
   
-  // Hero Games (Top 5 games)
   const heroGames = games.slice(0, 5);
   const heroGame = heroGames[heroIndex] || games[0];
 
-  // Auto-slide Hero
   useEffect(() => {
     if (isFiltering || heroGames.length <= 1) return;
     const interval = setInterval(() => {
@@ -167,7 +162,6 @@ export default function Home() {
   return (
     <div className="animate-fade-in pb-20">
       
-      {/* Hero Banner (Only show if not filtering) */}
       {!isFiltering && heroGame && (
         <div className="relative h-[60vh] min-h-[500px] w-full bg-black mb-12 transition-all duration-700 ease-in-out">
           <div className="absolute inset-0">
@@ -198,7 +192,6 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Slide Indicators */}
           <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
             {heroGames.map((g, idx) => (
               <button 
@@ -212,7 +205,6 @@ export default function Home() {
       )}
 
       <div className="container mx-auto px-4">
-        {/* Filters Sticky Bar */}
         <div className="sticky top-16 z-40 bg-black/90 backdrop-blur-md border-b border-[#27272a] py-4 mb-12">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow">
@@ -273,7 +265,6 @@ export default function Home() {
         ) : games.length > 0 ? (
           <>
             {!isFiltering ? (
-              // Netflix style carousels
               <div className="space-y-4">
                 <GameCarousel title="🔥 Lanzamientos PS5" games={ps5Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PS5')} />
                 <GameCarousel title="🔵 Éxitos de PS4" games={ps4Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PS4')} />
@@ -282,7 +273,6 @@ export default function Home() {
                 <GameCarousel title="💻 PC Master Race" games={pcGames} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PC')} />
               </div>
             ) : (
-              // Filtered Grid
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {games.map(game => (
                   <GameCard 

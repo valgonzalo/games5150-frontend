@@ -71,8 +71,7 @@ export default function GameDetail() {
   }
 
   return (
-    <div className="pb-20">
-      {/* Hero Banner with clean visual */}
+    <div className="min-h-screen pb-20">
       <div className="relative h-[50vh] min-h-[400px] w-full bg-[#0a0a0a] border-b border-[#27272a]">
         {game.cover_url && (
           <img 
@@ -90,9 +89,8 @@ export default function GameDetail() {
           Volver al catálogo
         </Link>
 
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Sidebar (Cover & Actions) */}
-          <div className="w-full lg:w-[350px] shrink-0">
+        <div className="flex flex-col md:flex-row gap-12">
+          <div className="w-full md:w-1/3 lg:w-1/4 shrink-0">
             <div className="bg-[#0a0a0a] border border-[#27272a] rounded-2xl overflow-hidden shadow-2xl">
               <div className="relative aspect-[3/4]">
                 {game.cover_url ? (
@@ -133,8 +131,7 @@ export default function GameDetail() {
             )}
           </div>
 
-          {/* Main Content Info */}
-          <div className="flex-grow pt-4">
+          <div className="flex-grow pt-4 md:pt-0">
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className={`px-3 py-1 text-white border rounded-full text-sm font-bold ${
                 game.platform === 'PS5' ? 'bg-blue-600 border-blue-500' :
@@ -183,7 +180,6 @@ export default function GameDetail() {
               </p>
             </div>
 
-            {/* System Requirements (Only for PC) */}
             {game.platform === 'PC' && (game.min_requirements || game.recommended_requirements) && (
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">

@@ -7,7 +7,6 @@ export default function AdminGames() {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingGame, setEditingGame] = useState(null);
   const [formData, setFormData] = useState({ 
@@ -177,7 +176,6 @@ export default function AdminGames() {
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
           <div className="glass-panel w-full max-w-2xl p-6 relative animate-in fade-in zoom-in duration-200 my-8">

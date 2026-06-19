@@ -13,7 +13,6 @@ export default function Navbar() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef(null);
 
-  // Auto-complete logic
   useEffect(() => {
     const fetchSuggestions = async () => {
       if (search.trim().length > 1) {
@@ -34,7 +33,6 @@ export default function Navbar() {
     return () => clearTimeout(debounceTimer);
   }, [search]);
 
-  // Click outside listener for search suggestions
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -70,20 +68,17 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           
-          {/* Logo & Main Nav */}
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2 text-2xl font-black text-white tracking-tighter">
               <Gamepad2 className="h-7 w-7 text-white" />
               Games5150
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-6">
               <Link to="/" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                 Inicio
               </Link>
               
-              {/* Platforms Dropdown */}
               <div className="relative group">
                 <button className="flex items-center gap-1 text-sm font-medium text-slate-300 hover:text-white transition-colors py-2">
                   Plataformas <ChevronDown className="h-4 w-4 opacity-50 group-hover:rotate-180 transition-transform duration-300" />
@@ -113,7 +108,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Search Bar with Autocomplete */}
           <div className="hidden lg:flex flex-grow max-w-md mx-8 relative" ref={searchRef}>
             <form onSubmit={handleSearch} className="relative w-full">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -129,7 +123,6 @@ export default function Navbar() {
               />
             </form>
 
-            {/* Suggestions Dropdown */}
             {showSuggestions && suggestions.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 bg-[#0a0a0a] border border-[#27272a] rounded-xl shadow-2xl overflow-hidden z-50 animate-fade-in">
                 <div className="flex flex-col">
@@ -169,7 +162,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* User Actions */}
           <div className="flex items-center gap-4">
             {user ? (
               <>

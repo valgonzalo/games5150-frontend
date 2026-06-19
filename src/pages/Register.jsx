@@ -24,7 +24,6 @@ export default function Register() {
     try {
       const { data } = await api.post('/auth/register', formData);
       setSuccess(data.message);
-      // Redirigir después de unos segundos
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
       setError(err.response?.data?.message || 'Error en el registro');

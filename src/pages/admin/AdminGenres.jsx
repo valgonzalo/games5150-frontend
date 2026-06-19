@@ -6,7 +6,6 @@ export default function AdminGenres() {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingGenre, setEditingGenre] = useState(null);
   const [formData, setFormData] = useState({ name: '', description: '' });
@@ -137,7 +136,6 @@ export default function AdminGenres() {
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="glass-panel w-full max-w-md p-6 relative animate-in fade-in zoom-in duration-200">
