@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import api from '../api/axios';
 import GameCard from '../components/GameCard';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Search, Filter, ChevronRight, ChevronLeft, Play } from 'lucide-react';
 
@@ -66,11 +66,24 @@ export default function Home() {
   const [wishlist, setWishlist] = useState(new Set());
   const [loading, setLoading] = useState(true);
   
-  const [search, setSearch] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState('');
-  const [selectedPlatform, setSelectedPlatform] = useState('');
-  const [sort, setSort] = useState('newest'); // 'newest', 'az', 'za'
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const search = searchParams.get('search') || '';
+  const selectedGenre = searchParams.get('genre_id') || '';
+  const selectedPlatform = searchParams.get('platform') || '';
+  const sort = searchParams.get('sort') || 'newest';
+  
   const [heroIndex, setHeroIndex] = useState(0);
+
+  const updateParams = (key, value) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (value) {
+      newParams.set(key, value);
+    } else {
+      newParams.delete(key);
+    }
+    setSearchParams(newParams);
+  };
   
   const { user } = useAuth();
 
@@ -218,7 +231,7 @@ export default function Home() {
                 className="input-field !pl-10"
                 placeholder="Buscar por título..."
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => updateParams('search', e.target.value)}
               />
             </div>
             
@@ -226,7 +239,7 @@ export default function Home() {
               <select
                 className="input-field appearance-none bg-black min-w-[150px]"
                 value={selectedPlatform}
-                onChange={(e) => setSelectedPlatform(e.target.value)}
+                onChange={(e) => updateParams('platform', e.target.value)}
               >
                 <option value="">Todas las Consolas</option>
                 <option value="PS5">PlayStation 5</option>
@@ -239,7 +252,7 @@ export default function Home() {
               <select
                 className="input-field appearance-none bg-black min-w-[150px]"
                 value={selectedGenre}
-                onChange={(e) => setSelectedGenre(e.target.value)}
+                onChange={(e) => updateParams('genre_id', e.target.value)}
               >
                 <option value="">Todos los géneros</option>
                 {genres.map(g => (
@@ -250,7 +263,7 @@ export default function Home() {
               <select
                 className="input-field appearance-none bg-black min-w-[150px]"
                 value={sort}
-                onChange={(e) => setSort(e.target.value)}
+                onChange={(e) => updateParams('sort', e.target.value)}
               >
                 <option value="newest">Más Recientes</option>
                 <option value="az">Alfabético (A-Z)</option>
@@ -268,11 +281,11 @@ export default function Home() {
           <>
             {!isFiltering ? (
               <div className="space-y-4">
-                <GameCarousel title="🔥 Lanzamientos PS5" games={ps5Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PS5')} />
-                <GameCarousel title="🔵 Éxitos de PS4" games={ps4Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PS4')} />
-                <GameCarousel title="💚 Éxitos de Xbox" games={xboxGames} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('Xbox')} />
-                <GameCarousel title="📺 Clásicos Inmortales (PS2)" games={ps2Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PS2')} />
-                <GameCarousel title="💻 PC Master Race" games={pcGames} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => setSelectedPlatform('PC')} />
+                <GameCarousel title="🔥 Lanzamientos PS5" games={ps5Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => updateParams('platform', 'PS5')} />
+                <GameCarousel title="🔵 Éxitos de PS4" games={ps4Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => updateParams('platform', 'PS4')} />
+                <GameCarousel title="💚 Éxitos de Xbox" games={xboxGames} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => updateParams('platform', 'Xbox')} />
+                <GameCarousel title="📺 Clásicos Inmortales (PS2)" games={ps2Games} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => updateParams('platform', 'PS2')} />
+                <GameCarousel title="💻 PC Master Race" games={pcGames} wishlist={wishlist} onWishlistToggle={handleWishlistToggle} onSeeAll={() => updateParams('platform', 'PC')} />
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
