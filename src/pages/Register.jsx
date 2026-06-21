@@ -41,7 +41,7 @@ export default function Register() {
           </div>
           <h1 className="text-2xl font-bold text-white">Crear Cuenta</h1>
           <p className="text-textMuted mt-2 text-center text-sm">
-            Únete a GameCat y descubre miles de juegos
+            Únete a Games5150 y descubre miles de juegos
           </p>
         </div>
 

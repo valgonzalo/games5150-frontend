@@ -41,5 +41,5 @@ Este repositorio contiene la Interfaz de Usuario (UI) para el Trabajo Integrador
 
 ## Credenciales de Prueba
 
-- **Admin**: `admin@gamecat.com` / `Admin1234!`
-- **Usuario**: `user@gamecat.com` / `User1234!`
+- **Admin**: `admin@games5150.online` / `Admin1234!`
+- **Usuario**: `user@games5150.online` / `User1234!`

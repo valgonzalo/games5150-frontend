@@ -34,7 +34,7 @@ export default function Login() {
           <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/30">
             <Gamepad2 className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Bienvenido a GameCat</h1>
+          <h1 className="text-2xl font-bold text-white">Bienvenido a Games5150</h1>
           <p className="text-textMuted mt-2 text-center text-sm">
             Ingresa a tu cuenta para gestionar tu catálogo y wishlist
           </p>
