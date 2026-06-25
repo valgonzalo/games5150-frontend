@@ -16,6 +16,10 @@ Este repositorio contiene la Interfaz de Usuario (UI) para el Trabajo Integrador
 - Lista de Deseados (Wishlist)
 - Diseño responsivo
 
+## Despliegue (Producción)
+
+Este proyecto se encuentra alojado en un **VPS propio configurado con Docker y Dokploy**, garantizando un entorno de producción estable y escalable.
+
 ## Instalación y Ejecución
 
 1. Clonar el repositorio:
